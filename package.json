@@ -13,10 +13,14 @@
   },
   "dependencies": {
     "@nuxt/eslint": "^0.6.1",
+    "@nuxt/ui": "2.20.0",
     "@nuxthub/core": "^0.8.5",
+    "firebase": "^11.1.0",
     "nuxt": "^3.14.0",
+    "nuxt-vuefire": "1.0.5",
     "vue": "^3.5.12",
-    "vue-router": "^4.4.5"
+    "vue-router": "^4.4.5",
+    "vuefire": "^3.2.1"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.6.1",
