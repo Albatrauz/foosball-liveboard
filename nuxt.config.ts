@@ -3,12 +3,6 @@ export default defineNuxtConfig({
   // https://nuxt.com/modules
   modules: ['@nuxthub/core', '@nuxt/eslint', 'nuxt-vuefire', '@nuxt/ui'],
   devtools: { enabled: true },
-  nitro: {
-    experimental: {
-      websocket: true,
-    },
-  },
-
   // Env variables - https://nuxt.com/docs/getting-started/configuration#environment-variables-and-private-tokens
   runtimeConfig: {
     public: {
