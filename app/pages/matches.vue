@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 
-const { matches, fetchMatches } = useMatches()
+import useMatches from '~~/composables/useMatches'
 
-onMounted(() => {
-  fetchMatches()
-})
+const { matches } = useMatches()
 
 const formattedMatches = computed(() => {
   return matches.value.map(match => ({
@@ -17,52 +14,46 @@ const formattedMatches = computed(() => {
   }))
 })
 
-const dateOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+const dateOptions = { day: 'numeric', month: 'long', year: 'numeric' }
 </script>
 
 <template>
-  <div>
-    <UContainer :ui="{ base: 'grid grid-cols-12 gap-6' }">
-      <div v-for="(match, index) in matches" :key="index" class="col-span-6">
-        <UCard>
-          <template #header>
-            <div class="flex justify-between items-center">
-              <div class="">
-                2 vs 2
-              </div>
-              <div class="text-right text-shakespeare-500 font-bold">
-                {{ match.date }}
-              </div>
+  <UContainer :ui="{ base: 'grid grid-cols-12 gap-6 pt-12' }">
+    <div v-for="(match, index) in formattedMatches" :key="index" class="col-span-6">
+      <UCard>
+        <template #header>
+          <div class="flex justify-between items-center">
+            <div class="">
+              2 vs 2
             </div>
-          </template>
-
-          <div class="flex">
-            <div class="flex flex-col-reverse flex-1">
-              <div class="inline-flex justify-center">
-                <span class="text-xs text-slate-300 flex" v-for="(player, index) in match.team1" :key="player">
-                  {{ player }}<span v-if="index === match.team1.length - 2">&nbsp;&&nbsp; </span>
-                </span>
-              </div>
-              <div class="text-3xl font-bold text-shakespeare-500 text-center mb-6">{{ match.scoreTeam1 }}</div>
-            </div>
-
-            <UDivider label="VS" size="xs" orientation="vertical" />
-
-            <div class="flex flex-col-reverse flex-1">
-              <div class="inline-flex justify-center">
-                <span class="text-xs text-slate-300 flex" v-for="(player, index) in match.team2" :key="player">
-                  {{ player }}<span v-if="index === match.team2.length - 2">&nbsp;&&nbsp; </span>
-                </span>
-              </div>
-              <div class="text-3xl font-bold text-shakespeare-500 text-center mb-6">{{ match.scoreTeam2 }}</div>
+            <div class="text-right text-shakespeare-500 font-bold">
+              {{ match.date }}
             </div>
           </div>
-        </UCard>
-      </div>
-    </UContainer>
-  </div>
-</template>
+        </template>
 
-<style scoped>
-/* Add your styles here */
-</style>
+        <div class="flex">
+          <div class="flex flex-col-reverse flex-1">
+            <div class="inline-flex justify-center">
+              <span class="text-xs text-slate-300 flex" v-for="(player, index) in match.team1" :key="player">
+                {{ player }}<span v-if="index === match.team1.length - 2">&nbsp;&&nbsp; </span>
+              </span>
+            </div>
+            <div class="text-3xl font-bold text-shakespeare-500 text-center mb-6">{{ match.scoreTeam1 }}</div>
+          </div>
+
+          <UDivider label="VS" size="xs" orientation="vertical" />
+
+          <div class="flex flex-col-reverse flex-1">
+            <div class="inline-flex justify-center">
+              <span class="text-xs text-slate-300 flex" v-for="(player, index) in match.team2" :key="player">
+                {{ player }}<span v-if="index === match.team2.length - 2">&nbsp;&&nbsp; </span>
+              </span>
+            </div>
+            <div class="text-3xl font-bold text-shakespeare-500 text-center mb-6">{{ match.scoreTeam2 }}</div>
+          </div>
+        </div>
+      </UCard>
+    </div>
+  </UContainer>
+</template>
