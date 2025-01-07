@@ -1,8 +1,5 @@
 <script setup>
-onMounted(() => {
-  console.log('Page mounted')
-  addData()
-})
+
 </script>
 
 <template>

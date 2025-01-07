@@ -32,6 +32,8 @@ const addNewUser = async () => {
       losses: 0,
       wins: 0,
       nemesis: '',
+      numberOfGoals: 0,
+      numberOfGoalsAgainst: 0,
     })
     console.log('Document written with ID: ', docRef.id)
     toast.add({
