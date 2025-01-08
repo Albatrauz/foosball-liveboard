@@ -168,8 +168,8 @@ const updatePlayerName = (playerNumber) => {
 const addMatch = async () => {
   try {
     const matchData = {
-      team1: [player1.value, player2.value, score1.value],
-      team2: [player3.value, player4.value, score2.value],
+      team1: {names: [player1.value, player2.value], score: score1.value},
+      team2: {names: [player3.value, player4.value], score: score2.value},
       date: serverTimestamp(),
     }
 

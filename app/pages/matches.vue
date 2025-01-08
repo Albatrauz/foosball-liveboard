@@ -6,10 +6,8 @@ const { matches } = useMatches()
 
 const formattedMatches = computed(() => {
   return matches.value.map(match => ({
-    team1: [match.name1, match.name2],
-    team2: [match.name3, match.name4],
-    scoreTeam1: match.scoreTeam1,
-    scoreTeam2: match.scoreTeam2,
+    team1: match.team1,
+    team2: match.team2,
     date: new Date(match.date.seconds * 1000).toLocaleDateString('nl-NL', dateOptions),
   }))
 })
@@ -35,22 +33,22 @@ const dateOptions = { day: 'numeric', month: 'long', year: 'numeric' }
         <div class="flex">
           <div class="flex flex-col-reverse flex-1">
             <div class="inline-flex justify-center">
-              <span class="text-xs text-slate-300 flex" v-for="(player, index) in match.team1" :key="player">
-                {{ player }}<span v-if="index === match.team1.length - 2">&nbsp;&&nbsp; </span>
+              <span class="text-xs text-slate-300 flex" v-for="(player, index) in match.team1.names" :key="player">
+                {{ player }}<span v-if="index === match.team1.names.length - 2">&nbsp;&&nbsp; </span>
               </span>
             </div>
-            <div class="text-3xl font-bold text-shakespeare-500 text-center mb-6">{{ match.scoreTeam1 }}</div>
+            <div class="text-3xl font-bold text-shakespeare-500 text-center mb-6">{{ match.team1.score }}</div>
           </div>
 
           <UDivider label="VS" size="xs" orientation="vertical" />
 
           <div class="flex flex-col-reverse flex-1">
             <div class="inline-flex justify-center">
-              <span class="text-xs text-slate-300 flex" v-for="(player, index) in match.team2" :key="player">
-                {{ player }}<span v-if="index === match.team2.length - 2">&nbsp;&&nbsp; </span>
+              <span class="text-xs text-slate-300 flex" v-for="(player, index) in match.team2.names" :key="player">
+                {{ player }}<span v-if="index === match.team2.names.length - 2">&nbsp;&&nbsp; </span>
               </span>
             </div>
-            <div class="text-3xl font-bold text-shakespeare-500 text-center mb-6">{{ match.scoreTeam2 }}</div>
+            <div class="text-3xl font-bold text-shakespeare-500 text-center mb-6">{{ match.team2.score }}</div>
           </div>
         </div>
       </UCard>
