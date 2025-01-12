@@ -3,12 +3,11 @@ export default defineNuxtConfig({
   // https://nuxt.com/modules
   modules: ['@nuxthub/core', '@nuxt/eslint', 'nuxt-vuefire', '@nuxt/ui'],
   devtools: { enabled: true },
+  ui: {
+    safelistColors: ['shakespeare'],
+  },
   // Env variables - https://nuxt.com/docs/getting-started/configuration#environment-variables-and-private-tokens
   runtimeConfig: {
-    public: {
-      // Can be overridden by NUXT_PUBLIC_HELLO_TEXT environment variable
-      helloText: 'Hello from the Edge 👋',
-    },
   },
   // https://nuxt.com/docs/getting-started/upgrade#testing-nuxt-4
   future: { compatibilityVersion: 4 },
@@ -23,9 +22,6 @@ export default defineNuxtConfig({
         quotes: 'single',
       },
     },
-  },
-  ui: {
-    safelistColors: ['shakespeare'],
   },
   vuefire: {
     config: {

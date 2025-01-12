@@ -19,6 +19,9 @@ export default <Partial<Config>>{
           950: '#063146',
         },
       },
+      fontFamily: {
+        climate: ['Climate Crisis', 'sans-serif'],
+      },
     },
   },
 }
