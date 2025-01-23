@@ -35,7 +35,6 @@ const addNewUser = async () => {
       numberOfGoals: 0,
       numberOfGoalsAgainst: 0,
     })
-    console.log('Document written with ID: ', docRef.id)
     toast.add({
       title: 'Gebruiker toegevoegd',
       icon: 'i-heroicons-check-badge',
@@ -50,10 +49,10 @@ const addNewUser = async () => {
 </script>
 
 <template>
-  <UContainer :ui="{ base: 'border border-px-solid border-slate-500 rounded-xl my-12 py-6', constrained: 'max-w-2xl' }">
+  <UContainer :ui="{ base: 'border border-px-solid border-slate-500 rounded-xl my-12 py-6', constrained: 'max-w-container' }">
     <h1 class="mb-6 text-xl font-bold">Gebruiker toevoegen</h1>
     <UDivider :ui="{ base: 'my-6' }" />
-    <UInput v-model="name" :ui="{ base: 'mb-6' }" size="lg" />
-    <UButton @click="addNewUser">Gebruiker toevoegen</UButton>
+    <UInput v-model="name" :ui="{ base: 'mb-6' }" size="lg"  />
+    <UButton @click="addNewUser" color="shakespeare">Gebruiker toevoegen</UButton>
   </UContainer>
 </template>
