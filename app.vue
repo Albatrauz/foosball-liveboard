@@ -1,11 +1,9 @@
 <script setup>
-import Header from './components/header.vue'
 </script>
 
 <template>
   <NuxtRouteAnnouncer />
   <NuxtLoadingIndicator />
-  <Header />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>

@@ -1,11 +1,10 @@
 <script setup lang="ts">
-
+import Header from '~~/components/Header.vue'
 </script>
 
 <template>
-  <div class="p-12 bg-gray-100 w-full h-full min-h-screen flex flex-col items-center">
-    <slot />
-  </div>
+  <Header />
+  <slot />
 </template>
 
 <style scoped>

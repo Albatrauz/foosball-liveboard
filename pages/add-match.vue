@@ -123,8 +123,8 @@
 import { ref, computed } from 'vue'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { useFirestore } from 'vuefire'
-import useUsers from '~~/composables/useUsers'
-import useMatches from '~~/composables/useMatches'
+import useUsers from '~~/composables/useUsers.js'
+import useMatches from '~~/composables/useMatches.js'
 
 const { fetchMatches } = useMatches() // Voeg fetchMatches toe
 const db = useFirestore()
