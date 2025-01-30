@@ -14,7 +14,7 @@
             <NuxtLink to="/add-user" class="link">Gebruiker toevoegen</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/add-match">
+            <NuxtLink to="/add-match" v-if="$route.path !== '/add-match'">
               <UButton
                 to="/add-match"
                 color="shakespeare"
