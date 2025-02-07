@@ -1,29 +1,34 @@
 <script setup lang="ts">
-import useMatches from '~~/composables/useMatches'
+import { useMatches } from '~~/composables/useMatches';
 
-const { matches } = useMatches()
+const { matches } = useMatches();
 
 const formattedMatches = computed(() => {
-  return matches.value.map(match => ({
+  return matches.value.map((match) => ({
     team1: match.team1,
     team2: match.team2,
-    date: new Date(match.date.seconds * 1000).toLocaleDateString('nl-NL', dateOptions),
-  }))
-})
+    date: new Date(match.date.seconds * 1000).toLocaleDateString(
+      'nl-NL',
+      dateOptions
+    ),
+  }));
+});
 
-const dateOptions = { day: 'numeric', month: 'long', year: 'numeric' }
+const dateOptions = { day: 'numeric', month: 'long', year: 'numeric' };
 </script>
 
 <template>
   <div>
     <UContainer :ui="{ base: 'grid grid-cols-12 gap-6 pt-12' }">
-      <div v-for="(match, index) in formattedMatches" :key="index" class="col-span-6">
+      <div
+        v-for="(match, index) in formattedMatches"
+        :key="index"
+        class="col-span-6"
+      >
         <UCard>
           <template #header>
             <div class="flex justify-between items-center">
-              <div class="">
-                2 vs 2
-              </div>
+              <div class="">2 vs 2</div>
               <div class="text-right text-shakespeare-500 font-bold">
                 {{ match.date }}
               </div>
@@ -33,11 +38,20 @@ const dateOptions = { day: 'numeric', month: 'long', year: 'numeric' }
           <div class="flex">
             <div class="flex flex-col-reverse flex-1">
               <div class="inline-flex justify-center">
-                <span v-for="(player, index) in match.team1.names" :key="player" class="text-xs text-slate-300 flex">
-                  {{ player }}<span v-if="index === match.team1.names.length - 2">&nbsp;&&nbsp; </span>
+                <span
+                  v-for="(player, index) in match.team1.names"
+                  :key="player"
+                  class="text-xs text-slate-300 flex"
+                >
+                  {{ player
+                  }}<span v-if="index === match.team1.names.length - 2"
+                    >&nbsp;&&nbsp;
+                  </span>
                 </span>
               </div>
-              <div class="text-3xl font-bold text-shakespeare-500 text-center mb-6">
+              <div
+                class="text-3xl font-bold text-shakespeare-500 text-center mb-6"
+              >
                 {{ match.team1.score }}
               </div>
             </div>
@@ -46,11 +60,20 @@ const dateOptions = { day: 'numeric', month: 'long', year: 'numeric' }
 
             <div class="flex flex-col-reverse flex-1">
               <div class="inline-flex justify-center">
-                <span v-for="(player, index) in match.team2.names" :key="player" class="text-xs text-slate-300 flex">
-                  {{ player }}<span v-if="index === match.team2.names.length - 2">&nbsp;&&nbsp; </span>
+                <span
+                  v-for="(player, index) in match.team2.names"
+                  :key="player"
+                  class="text-xs text-slate-300 flex"
+                >
+                  {{ player
+                  }}<span v-if="index === match.team2.names.length - 2"
+                    >&nbsp;&&nbsp;
+                  </span>
                 </span>
               </div>
-              <div class="text-3xl font-bold text-shakespeare-500 text-center mb-6">
+              <div
+                class="text-3xl font-bold text-shakespeare-500 text-center mb-6"
+              >
                 {{ match.team2.score }}
               </div>
             </div>
