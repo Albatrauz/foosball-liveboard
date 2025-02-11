@@ -1,126 +1,4 @@
 <template>
-<<<<<<< Updated upstream
-  <div>
-    <h2 class="font-climate uppercase text-transparent opacity-60 left-1/2 -translate-x-1/2 absolute whitespace-nowrap">Nieuwe Wedstrijd</h2>
-    <UContainer>
-      <form @submit.prevent="addMatch">
-        <div class="grid grid-cols-12">
-          <div class="col-span-6">
-            <h3 class="text-2xl">Team 1</h3>
-            <div>
-              <label for="player1">Speler 1:</label>
-              <select
-                id="player1"
-                v-model="player1"
-                required
-                @change="updatePlayerName(1)"
-              >
-                <option value="">
-                  Selecteer speler
-                </option>
-                <option v-for="user in availableUsers" :key="user.name" :value="user.name">
-                  {{ user.name }}
-                </option>
-              </select>
-              <span v-if="playerNames[0]">{{ playerNames[0] }}</span>
-            </div>
-            <div>
-              <label for="player2">Speler 2:</label>
-              <select
-                id="player2"
-                v-model="player2"
-                required
-                @change="updatePlayerName(2)"
-              >
-                <option value="">
-                  Selecteer speler
-                </option>
-                <option
-                  v-for="user in availableUsers"
-                  :key="user.name"
-                  :value="user.name"
-                  :disabled="player1 === user.name"
-                >
-                  {{ user.name }}
-                </option>
-              </select>
-              <span v-if="playerNames[1]">{{ playerNames[1] }}</span>
-            </div>
-            <div>
-              <label for="score1">Score:</label>
-              <input
-                id="score1"
-                v-model.number="score1"
-                type="number"
-                required
-              >
-            </div>
-          </div>
-
-          <div class="col-span-6">
-            <h3 class="text-2xl">Team 2</h3>
-            <div>
-              <label for="player3">Speler 3:</label>
-              <select
-                id="player3"
-                v-model="player3"
-                required
-                @change="updatePlayerName(3)"
-              >
-                <option value="">
-                  Selecteer speler
-                </option>
-                <option
-                  v-for="user in availableUsers"
-                  :key="user.name"
-                  :value="user.name"
-                  :disabled="player1 === user.name || player2 === user.name"
-                >
-                  {{ user.name }}
-                </option>
-              </select>
-              <span v-if="playerNames[2]">{{ playerNames[2] }}</span>
-            </div>
-            <div>
-              <label for="player4">Speler 4:</label>
-              <select
-                id="player4"
-                v-model="player4"
-                required
-                @change="updatePlayerName(4)"
-              >
-                <option value="">
-                  Selecteer speler
-                </option>
-                <option
-                  v-for="user in availableUsers"
-                  :key="user.id"
-                  :value="user.name"
-                  :disabled="player1 === user.inamed || player2 === user.name || player3 === user.name"
-                >
-                  {{ user.name }}
-                </option>
-              </select>
-              <span v-if="playerNames[3]">{{ playerNames[3] }}</span>
-            </div>
-            <div>
-              <label for="score2">Score:</label>
-              <input
-                id="score2"
-                v-model.number="score2"
-                type="number"
-                required
-              >
-            </div>
-          </div>
-
-          <button type="submit">
-            Wedstrijd Toevoegen
-          </button>
-        </div>
-      </form>
-
-=======
   <div class="p-6">
     <UContainer
       :ui="{
@@ -133,7 +11,7 @@
       </h2>
 
       <!-- Step indicator -->
-      {/* Add Step indicator */}
+      TODO: Add Step indicator
 
       <!-- Step 1: Team 1 Selection -->
       <div v-if="currentStep === 1" class="space-y-6">
@@ -145,8 +23,10 @@
               <UButton
                 v-for="user in availableUsers"
                 :key="user.id"
+                color="shakespeare"
+                variant="outline"
                 :class="[
-                  'p-3 rounded-lg transition-colors',
+                  'p-3',
                   player1?.id === user.id
                     ? 'bg-blue-500 text-white'
                     : 'bg-gray-100 hover:bg-gray-200 text-black',
@@ -167,15 +47,8 @@
               <UButton
                 v-for="user in availableUsers"
                 :key="user.id"
-                :class="[
-                  'p-3 rounded-lg transition-colors',
-                  player2?.id === user.id
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-gray-100 hover:bg-gray-200 text-black',
-                  isPlayerSelected(user, 2)
-                    ? 'opacity-50 cursor-not-allowed'
-                    : '',
-                ]"
+                color="shakespeare"
+                variant="outline"
                 @click="selectPlayer(2, user)"
                 :disabled="isPlayerSelected(user, 2)"
               >
@@ -203,13 +76,8 @@
               <UButton
                 v-for="user in availableUsersTeam2"
                 :key="user.id"
-                :class="[
-                  'p-3 rounded-lg transition-colors text-black',
-                  player3?.id === user.id
-                    ? 'bg-blue-500 text-black'
-                    : 'bg-gray-100 hover:bg-gray-200',
-                  isPlayerSelected(user) ? 'opacity-50 cursor-not-allowed' : '',
-                ]"
+                color="shakespeare"
+                variant="outline"
                 @click="selectPlayer(3, user)"
                 :disabled="isPlayerSelected(user)"
               >
@@ -220,21 +88,16 @@
           <div>
             <label class="block mb-2">Speler 4</label>
             <div class="grid grid-cols-2 gap-2">
-              <Ubutton
+              <UButton
                 v-for="user in availableUsersTeam2"
                 :key="user.id"
-                :class="[
-                  'p-3 rounded-lg transition-colors text-black',
-                  player4?.id === user.id
-                    ? 'bg-blue-500 text-black'
-                    : 'bg-gray-100 hover:bg-gray-200',
-                  isPlayerSelected(user) ? 'opacity-50 cursor-not-allowed' : '',
-                ]"
+                color="shakespeare"
+                variant="outline"
                 @click="selectPlayer(4, user)"
                 :disabled="isPlayerSelected(user)"
               >
                 {{ user.name }}
-              </Ubutton>
+              </UButton>
             </div>
           </div>
         </div>
@@ -262,7 +125,7 @@
           <div>
             <h4 class="mb-2">Team 1 Score: {{ score1 }}</h4>
             <div class="grid grid-cols-6 gap-2">
-              <button
+              <UButton
                 v-for="n in 11"
                 :key="n - 1"
                 @click="score1 = n - 1"
@@ -274,13 +137,13 @@
                 ]"
               >
                 {{ n - 1 }}
-              </button>
+              </UButton>
             </div>
           </div>
           <div>
             <h4 class="mb-2">Team 2 Score: {{ score2 }}</h4>
             <div class="grid grid-cols-6 gap-2">
-              <button
+              <UButton
                 v-for="n in 11"
                 :key="n - 1"
                 @click="score2 = n - 1"
@@ -292,26 +155,27 @@
                 ]"
               >
                 {{ n - 1 }}
-              </button>
+              </UButton>
             </div>
           </div>
         </div>
         <div class="flex gap-2">
-          <button
+          <UButton
             @click="previousStep"
-            class="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+            color="gray"
+            variant="solid"
           >
             Terug
-          </button>
-          <button
+          </UButton>
+          <UButton
             @click="addMatch"
-            class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+            color="green"
+            variant="solid"
           >
             Wedstrijd Toevoegen
-          </button>
+          </UButton>
         </div>
       </div>
->>>>>>> Stashed changes
     </UContainer>
   </div>
 </template>
@@ -413,16 +277,6 @@ const addMatch = async () => {
   }
 };
 </script>
-<<<<<<< Updated upstream
-<style>
-  h2 {
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #00beeb;
-    color: transparent;
-    @apply text-[100px];
-  }
-</style>
-=======
 
 <style scoped>
 h2 {
@@ -431,4 +285,3 @@ h2 {
   color: transparent;
 }
 </style>
->>>>>>> Stashed changes
